@@ -1,5 +1,5 @@
 console.log("App.js loaded");
-// ✅ Global State (ONLY ONCE)
+
 const state = {
     type: "Length",
     action: "Conversion",
@@ -10,7 +10,6 @@ const state = {
     operator: "+"
 };
 
-// ✅ Single DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
@@ -31,8 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-// ✅ Functions
-
 function attachEventListeners() {
     console.log("Event listeners attached");
 }
@@ -48,6 +45,10 @@ function toggleOperators(show) {
 
 async function loadUnits(type) {
     console.log("Loading units for:", type);
+
+    const units = await getUnits(type);
+
+    console.log("Units fetched:", units);
 }
 
 async function loadHistory() {

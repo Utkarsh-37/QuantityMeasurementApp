@@ -1,15 +1,12 @@
 <!-- 
-    UC-JS-02 : App Initialisation
-    1. Wrap all code in: document.addEventListener("DOMContentLoaded", async () => { ... })
-    2. Declare state = { type:"Length", action:"Conversion", fromVal:null, fromUnit:"", toVal:null, toUnit:"", operator:"+" }
-    3. Call attachEventListeners().
-    4. Call loadUnits("Length") to populate FROM and TO dropdowns.
-    5. Set first type-card and first action-button as active.
-    6. Hide operator row: toggleOperators(false).
-    7. Call loadHistory()
+    UC-JS-03 : Fetch Units for Selected Type
+    1. export async function getUnits(type) { }
+    2. const res = await fetch(`http://localhost:3000/units?type=${type}`)
+    3. if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    4. return await res.json()
 
     @author Developer
-    @version 2.0
+    @version 3.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -146,6 +143,7 @@
         </div>
     </div>
         <!-- JS Files -->
+    <script src ="../JAVASCRIPT/api.js"></script>
     <script src="../JAVASCRIPT/app.js"></script>
 
 </body>
