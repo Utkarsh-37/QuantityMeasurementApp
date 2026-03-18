@@ -1,3 +1,14 @@
+<!-- 
+    UC-JS-01 : Create JSON Server Database
+    1. Create db.json at project root.
+    2. Add "units" array with objects: { id, type, label, symbol }.
+    3. Add "conversions" array with objects: { id, from, to, factor, formula }.
+    4. Add "history" array — start empty: [].
+    5. Verify GET http://localhost:3000/units returns the full array.
+
+    @author Developer
+    @version 1.0
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +36,7 @@
             <h1>Welcome To Quantity Measurement</h1>
         </div>
 
-        <div class="container mt-5">
+        <div class="container mt-3">
 
             <!-- Choose Type -->
             <p class="section-title">CHOOSE TYPE</p>
@@ -63,7 +74,7 @@
             </div>
 
             <!-- Choose Action -->
-            <p class="section-title mt-5">CHOOSE ACTION</p>
+            <p class="section-title mt-3">CHOOSE ACTION</p>
 
             <div class="row g-3">
 
@@ -88,7 +99,7 @@
             </div>
 
             <!-- Input -->
-            <div class="row mt-5 g-4 mb-5">
+            <div class="row mt-3 g-4 mb-3">
 
                 <!-- From -->
                 <div class="col-md-6">
