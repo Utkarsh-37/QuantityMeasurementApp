@@ -1,12 +1,13 @@
 <!-- 
     UC-JS-03 : Fetch Units for Selected Type
-    1. export async function getUnits(type) { }
-    2. const res = await fetch(`http://localhost:3000/units?type=${type}`)
-    3. if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    4. return await res.json()
+    1. export async function getConversion(from, to) { }
+    2. const res = await fetch(`${BASE_URL}/conversions?from=${from}&to=${to}`)
+    3. const data = await res.json()   // json-server returns array even for one result
+    4. if (!data.length) throw new Error("No conversion found")
+    5. return data[0]
 
     @author Developer
-    @version 3.0
+    @version 4.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -110,12 +111,7 @@
                             class="form-control input-number"
                             placeholder="Enter value"
                         >
-
-                        <select class="form-select mt-3">
-                            <option>Kilometer</option>
-                            <option>Meter</option>
-                            <option>Centimeter</option>
-                        </select>
+                        <select id="fromUnit" class="form-select mt-3"></select>
                     </div>
                 </div>
 
@@ -129,12 +125,7 @@
                             class="form-control input-number"
                             placeholder="Result"
                         >
-
-                        <select class="form-select mt-3">
-                            <option>Meters</option>
-                            <option>Kilometers</option>
-                            <option>Centimeters</option>
-                        </select>
+                        <select id="toUnit" class="form-select mt-3"></select>
                     </div>
                 </div>
 
