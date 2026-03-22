@@ -1,13 +1,15 @@
 <!-- 
-    UC-JS-03 : Fetch Units for Selected Type
-    1. export async function getConversion(from, to) { }
-    2. const res = await fetch(`${BASE_URL}/conversions?from=${from}&to=${to}`)
-    3. const data = await res.json()   // json-server returns array even for one result
-    4. if (!data.length) throw new Error("No conversion found")
-    5. return data[0]
+    UC-JS-05 : Save Calculation Record to History
+    1. export async function saveHistory(record) { }
+    2. const res = await fetch(`${BASE_URL}/history`, {
+         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(record)
+    })
+    3. return await res.json()
 
     @author Developer
-    @version 4.0
+    @version 5.0
 -->
 <!DOCTYPE html>
 <html lang="en">

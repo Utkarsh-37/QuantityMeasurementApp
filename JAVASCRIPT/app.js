@@ -49,9 +49,16 @@ async function loadUnits(type) {
     const units = await getUnits(type);
     console.log("Units fetched:", units);
 
-    // TEST conversion
-    const conv = await getConversion("km", "m");
-    console.log("Conversion fetched:", conv);
+    // TEST history save
+    await saveHistory({
+        type: "Length",
+        action: "Conversion",
+        expression: "10 km to m",
+        result: "10000",
+        timestamp: new Date().toISOString()
+    });
+
+    console.log("History saved!");
 }
 
 async function loadHistory() {
