@@ -85,14 +85,20 @@ function attachEventListeners() {
 
     actionButtons.forEach(btn => {
         btn.addEventListener("click", () => {
+
+            // 🔹 1. Update state from dataset
+            state.action = btn.dataset.action;
+
+            console.log("Selected action:", state.action);
+
+            // 🔹 2. Update active UI
             setActive(actionContainer, btn, ".action-btn");
 
-            const selectedAction = btn.innerText.trim();
-            console.log("Selected action:", selectedAction);
+            // 🔹 3. Toggle operator row
+            toggleOperators(state.action === "Arithmetic");
 
-            state.action = selectedAction;
-
-            toggleOperators(selectedAction === "Arithmetic");
+            // 🔹 4. Reset result
+            showResult(0, "");
         });
     });
 }
