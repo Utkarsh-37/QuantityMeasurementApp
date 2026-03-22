@@ -63,3 +63,22 @@ async function saveHistory(record) {
         // ❗ DO NOT throw — history is non-critical
     }
 }
+
+async function getHistory() {
+    try {
+        const res = await fetch(
+            `${BASE_URL}/history?_sort=timestamp&_order=desc`
+        );
+
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        return data;
+
+    } catch (error) {
+        console.error("Error fetching history:", error);
+        return []; // safe fallback
+    }
+}
