@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     } catch (error) {
         console.error("Initialization Error:", error);
-        showError("Server unavailable");
+        showError(error.message)
     }
 
 });
@@ -49,15 +49,20 @@ async function loadUnits(type) {
     const units = await getUnits(type);
     console.log("Units fetched:", units);
 
-    // TEST comparison
-    const conv1 = await getConversion("km", "m");
+    // TEST arithmetic (SAFE VERSION)
 
-    const base1 = applyConversion(10, conv1); // 10 km → m
-    const base2 = 500; // already in meters
+    const v1 = 10; // km
+    const v2 = 500; // m
 
-    const result = compareValues(10, "km", 500, "m", base1, base2);
+    // convert v2 → km (reverse not available, so use direct base logic)
+    const conv = await getConversion("km", "m");
+    const base = applyConversion(v1, conv); // 10 km → m = 10000
 
-    console.log("Comparison:", result);
+    const v2norm = 500; // already in m
+
+    const result = performArithmetic(base, v2norm, "+");
+
+    console.log("Arithmetic result:", result);
 }
 
 async function loadHistory() {

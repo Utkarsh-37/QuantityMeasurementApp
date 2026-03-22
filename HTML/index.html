@@ -1,12 +1,16 @@
 <!-- 
-    UC-JS-08 : Compare Two Measurement Values
-    1. function compareValues(v1, u1, v2, u2, base1, base2) { }
-    2. if (base1 > base2) return `${v1} ${u1} is GREATER than ${v2} ${u2}`
-    3. if (base1 < base2) return `${v1} ${u1} is LESS than ${v2} ${u2}`
-    4. return `${v1} ${u1} is EQUAL to ${v2} ${u2}`
+    UC-JS-09 : Perform Arithmetic Between Two Measurements
+    1. function performArithmetic(v1, v2normalised, op) { }
+    2. switch(op):
+       "+": return parseFloat((v1 + v2normalised).toFixed(6))
+       "-": return parseFloat((v1 - v2normalised).toFixed(6))
+       "*": return parseFloat((v1 * v2normalised).toFixed(6))
+        "/": if (v2normalised === 0) throw Error("Divide by zero")
+            return parseFloat((v1 / v2normalised).toFixed(6))
+    3. default: throw Error("Unknown operator")
 
     @author Developer
-    @version 7.0
+    @version 9.0
 -->
 <!DOCTYPE html>
 <html lang="en">
