@@ -49,20 +49,13 @@ async function loadUnits(type) {
     const units = await getUnits(type);
     console.log("Units fetched:", units);
 
-    // TEST arithmetic (SAFE VERSION)
+    // 🔹 Get dropdown elements
+    const fromSelect = document.getElementById("fromUnit");
+    const toSelect = document.getElementById("toUnit");
 
-    const v1 = 10; // km
-    const v2 = 500; // m
-
-    // convert v2 → km (reverse not available, so use direct base logic)
-    const conv = await getConversion("km", "m");
-    const base = applyConversion(v1, conv); // 10 km → m = 10000
-
-    const v2norm = 500; // already in m
-
-    const result = performArithmetic(base, v2norm, "+");
-
-    console.log("Arithmetic result:", result);
+    // 🔹 Populate both dropdowns
+    populateDropdown(fromSelect, units);
+    populateDropdown(toSelect, units);
 }
 
 async function loadHistory() {

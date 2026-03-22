@@ -1,16 +1,16 @@
 <!-- 
-    UC-JS-09 : Perform Arithmetic Between Two Measurements
-    1. function performArithmetic(v1, v2normalised, op) { }
-    2. switch(op):
-       "+": return parseFloat((v1 + v2normalised).toFixed(6))
-       "-": return parseFloat((v1 - v2normalised).toFixed(6))
-       "*": return parseFloat((v1 * v2normalised).toFixed(6))
-        "/": if (v2normalised === 0) throw Error("Divide by zero")
-            return parseFloat((v1 / v2normalised).toFixed(6))
-    3. default: throw Error("Unknown operator")
+    UC-JS-10 : Populate Unit Dropdown
+    1. function populateDropdown(selectEl, units) { }
+    2. selectEl.innerHTML = ""
+    3. Append disabled+selected default option: "-- Select Unit --"
+    4. units.forEach(u => {
+         const opt = document.createElement("option")
+         opt.value = u.symbol
+         opt.textContent = `${u.label} (${u.symbol})`
+         selectEl.appendChild(opt) })
 
     @author Developer
-    @version 9.0
+    @version 10.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -139,6 +139,7 @@
         <!-- JS Files -->
     <script src="../JAVASCRIPT/conversion.js"></script>
     <script src ="../JAVASCRIPT/api.js"></script>
+    <script src="../JAVASCRIPT/ui.js"></script>
     <script src="../JAVASCRIPT/app.js"></script>
 
 </body>
