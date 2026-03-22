@@ -1,12 +1,10 @@
 <!-- 
-    UC-JS-12 : Show Result
-    1. function showResult(value, unitSymbol) { }
-    2. document.querySelector("#result-value").textContent = value
-    3. document.querySelector("#result-unit").textContent = unitSymbol
-    4. Add "highlight" class; setTimeout 1500 ms to remove it
+    UC-JS-13 : Toggle Operator Row	
+    1. function toggleOperators(show) { }
+    2. document.querySelector("#operator-selector").style.display = show ? "flex" : "none"
 
     @author Developer
-    @version 12.0
+    @version 13.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +91,27 @@
                     <button class="btn action-btn w-100">
                         Arithmetic
                     </button>
+                </div>
+
+            </div>
+
+            <!-- OPERATOR SELECTOR -->
+            <div id="operator-selector" class="row g-3 mt-3" style="display: none;">
+                
+                <div class="col-md-3">
+                    <button class="btn action-btn w-100">+</button>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn action-btn w-100">-</button>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn action-btn w-100">*</button>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn action-btn w-100">/</button>
                 </div>
 
             </div>

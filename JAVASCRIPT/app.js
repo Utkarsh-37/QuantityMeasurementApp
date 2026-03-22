@@ -62,6 +62,8 @@ function attachEventListeners() {
             console.log("Selected action:", selectedAction);
 
             state.action = selectedAction;
+
+            toggleOperators(selectedAction === "Arithmetic");
         });
     });
 }
@@ -71,9 +73,6 @@ function setDefaultActive() {
     document.querySelector(".action-btn").classList.add("active");
 }
 
-function toggleOperators(show) {
-    console.log("Operator visibility:", show);
-}
 
 async function loadUnits(type) {
     console.log("Loading units for:", type);
