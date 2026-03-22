@@ -88,6 +88,7 @@ async function loadUnits(type) {
     // 🔹 Populate both dropdowns
     populateDropdown(fromSelect, units);
     populateDropdown(toSelect, units);
+
 }
 
 async function loadHistory() {

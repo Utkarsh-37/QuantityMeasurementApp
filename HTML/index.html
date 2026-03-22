@@ -1,11 +1,12 @@
 <!-- 
-    UC-JS-11 : Set Active Button
-    1. function setActive(parentEl, clickedEl, childSelector) { }
-    2. parentEl.querySelectorAll(childSelector).forEach(el => el.classList.remove("active"))
-    3. clickedEl.classList.add("active")
+    UC-JS-12 : Show Result
+    1. function showResult(value, unitSymbol) { }
+    2. document.querySelector("#result-value").textContent = value
+    3. document.querySelector("#result-unit").textContent = unitSymbol
+    4. Add "highlight" class; setTimeout 1500 ms to remove it
 
     @author Developer
-    @version 11.0
+    @version 12.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -127,6 +128,15 @@
                     </div>
                 </div>
 
+            </div>
+            <!-- RESULT PANEL -->
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="input-box text-center">
+                        <h3 id="result-value">—</h3>
+                        <p id="result-unit"></p>
+                    </div>
+                </div>
             </div>
 
         </div>
