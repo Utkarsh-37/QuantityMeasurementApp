@@ -1,15 +1,12 @@
 <!-- 
-    UC-JS-05 : Save Calculation Record to History
-    1. export async function saveHistory(record) { }
-    2. const res = await fetch(`${BASE_URL}/history`, {
-         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(record)
-    })
-    3. return await res.json()
+    UC-JS-08 : Compare Two Measurement Values
+    1. function compareValues(v1, u1, v2, u2, base1, base2) { }
+    2. if (base1 > base2) return `${v1} ${u1} is GREATER than ${v2} ${u2}`
+    3. if (base1 < base2) return `${v1} ${u1} is LESS than ${v2} ${u2}`
+    4. return `${v1} ${u1} is EQUAL to ${v2} ${u2}`
 
     @author Developer
-    @version 5.0
+    @version 7.0
 -->
 <!DOCTYPE html>
 <html lang="en">

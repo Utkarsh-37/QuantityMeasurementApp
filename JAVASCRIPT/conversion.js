@@ -26,3 +26,22 @@ function applyConversion(value, convObj) {
         }
     }
 }
+
+function compareValues(v1, u1, v2, u2, base1, base2) {
+
+    // ❌ Invalid values
+    if (isNaN(v1) || isNaN(v2)) {
+        return "Invalid values — cannot compare";
+    }
+
+    // 🔹 Compare normalized values
+    if (base1 > base2) {
+        return `${v1} ${u1} is GREATER than ${v2} ${u2}`;
+    }
+
+    if (base1 < base2) {
+        return `${v1} ${u1} is LESS than ${v2} ${u2}`;
+    }
+
+    return `${v1} ${u1} is EQUAL to ${v2} ${u2}`;
+}

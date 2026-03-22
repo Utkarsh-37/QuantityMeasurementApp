@@ -49,11 +49,15 @@ async function loadUnits(type) {
     const units = await getUnits(type);
     console.log("Units fetched:", units);
 
-    // TEST conversion
-    const conv = await getConversion("km", "m");
-    const result = applyConversion(10, conv);
+    // TEST comparison
+    const conv1 = await getConversion("km", "m");
 
-    console.log("Converted value:", result);
+    const base1 = applyConversion(10, conv1); // 10 km → m
+    const base2 = 500; // already in meters
+
+    const result = compareValues(10, "km", 500, "m", base1, base2);
+
+    console.log("Comparison:", result);
 }
 
 async function loadHistory() {
