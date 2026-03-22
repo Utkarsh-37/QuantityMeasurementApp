@@ -25,3 +25,20 @@ function populateDropdown(selectEl, units) {
         selectEl.appendChild(opt);
     });
 }
+
+function setActive(parentEl, clickedEl, childSelector) {
+
+    // ❌ Safety check
+    if (!parentEl) {
+        console.warn("Parent element not found");
+        return;
+    }
+
+    // 🔹 Remove active from all children
+    parentEl.querySelectorAll(childSelector).forEach(el => {
+        el.classList.remove("active");
+    });
+
+    // 🔹 Add active to clicked element
+    clickedEl.classList.add("active");
+}

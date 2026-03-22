@@ -32,6 +32,38 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function attachEventListeners() {
     console.log("Event listeners attached");
+
+    // 🔹 Type cards
+    const typeContainer = document.querySelector(".row.g-4");
+    const typeCards = document.querySelectorAll(".type-card");
+
+    typeCards.forEach(card => {
+        card.addEventListener("click", () => {
+            setActive(typeContainer, card, ".type-card");
+
+            const selectedType = card.innerText.trim();
+            console.log("Selected type:", selectedType);
+
+            state.type = selectedType;
+
+            loadUnits(selectedType);
+        });
+    });
+
+    // 🔹 Action buttons
+    const actionContainer = document.querySelector(".row.g-3");
+    const actionButtons = document.querySelectorAll(".action-btn");
+
+    actionButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            setActive(actionContainer, btn, ".action-btn");
+
+            const selectedAction = btn.innerText.trim();
+            console.log("Selected action:", selectedAction);
+
+            state.action = selectedAction;
+        });
+    });
 }
 
 function setDefaultActive() {

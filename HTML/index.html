@@ -1,16 +1,11 @@
 <!-- 
-    UC-JS-10 : Populate Unit Dropdown
-    1. function populateDropdown(selectEl, units) { }
-    2. selectEl.innerHTML = ""
-    3. Append disabled+selected default option: "-- Select Unit --"
-    4. units.forEach(u => {
-         const opt = document.createElement("option")
-         opt.value = u.symbol
-         opt.textContent = `${u.label} (${u.symbol})`
-         selectEl.appendChild(opt) })
+    UC-JS-11 : Set Active Button
+    1. function setActive(parentEl, clickedEl, childSelector) { }
+    2. parentEl.querySelectorAll(childSelector).forEach(el => el.classList.remove("active"))
+    3. clickedEl.classList.add("active")
 
     @author Developer
-    @version 10.0
+    @version 11.0
 -->
 <!DOCTYPE html>
 <html lang="en">
