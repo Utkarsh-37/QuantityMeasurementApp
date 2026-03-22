@@ -49,6 +49,11 @@ async function loadUnits(type) {
     const units = await getUnits(type);
     console.log("Units fetched:", units);
 
+    // TEST conversion
+    const conv = await getConversion("km", "m");
+    const result = applyConversion(10, conv);
+
+    console.log("Converted value:", result);
 }
 
 async function loadHistory() {
