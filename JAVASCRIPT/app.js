@@ -96,6 +96,8 @@ async function loadHistory() {
     const history = await getHistory();
 
     console.log("History fetched:", history);
+
+    renderHistory(history); 
 }
 
 function showError(message) {

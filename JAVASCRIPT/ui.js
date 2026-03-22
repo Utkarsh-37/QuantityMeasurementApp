@@ -86,3 +86,35 @@ function toggleOperators(show) {
 
     operatorRow.style.display = show ? "flex" : "none";
 }
+
+function renderHistory(records) {
+
+    const list = document.querySelector("#history-list");
+
+    // ❌ Safety check
+    if (!list) {
+        console.warn("History list not found");
+        return;
+    }
+
+    // 🔹 Treat undefined as []
+    records = records || [];
+
+    // 🔹 Clear existing list
+    list.innerHTML = "";
+
+    // 🔹 Empty state
+    if (!records.length) {
+        list.innerHTML = "<li>No history yet.</li>";
+        return;
+    }
+
+    // 🔹 Render records
+    records.forEach(r => {
+        const li = document.createElement("li");
+
+        li.textContent = `${r.expression} = ${r.result} (${new Date(r.timestamp).toLocaleString()})`;
+
+        list.appendChild(li);
+    });
+}
