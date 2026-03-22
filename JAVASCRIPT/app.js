@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         attachEventListeners();
 
-        await loadUnits("Length");
+        await loadUnits("length");
 
         setDefaultActive();
 
@@ -37,16 +37,45 @@ function attachEventListeners() {
     const typeContainer = document.querySelector(".row.g-4");
     const typeCards = document.querySelectorAll(".type-card");
 
+    const fromInput = document.querySelector(".input-number"); // first input
+    const toInput = document.querySelectorAll(".input-number")[1];
+
+    const fromSelect = document.getElementById("fromUnit");
+    const toSelect = document.getElementById("toUnit");
+
     typeCards.forEach(card => {
-        card.addEventListener("click", () => {
-            setActive(typeContainer, card, ".type-card");
+        card.addEventListener("click", async () => {
 
-            const selectedType = card.innerText.trim();
-            console.log("Selected type:", selectedType);
+            try {
+                // 🔹 1. Update state (from dataset)
+                state.type = card.dataset.type;
 
-            state.type = selectedType;
+                console.log("Selected type:", state.type);
 
-            loadUnits(selectedType);
+                // 🔹 2. Update active UI
+                setActive(typeContainer, card, ".type-card");
+
+                // 🔹 3. Clear inputs + result
+                fromInput.value = "";
+                toInput.value = "";
+                showResult(null);
+
+                // 🔹 4. Fetch new units
+                const units = await getUnits(state.type);
+
+                // 🔹 5. Populate dropdowns
+                populateDropdown(fromSelect, units);
+                populateDropdown(toSelect, units);
+
+                // 🔹 6. Reset state units
+                state.fromUnit = "";
+                state.toUnit = "";
+
+            } catch (error) {
+                console.error("Error loading units:", error);
+                showError("Failed to load units");
+            }
+
         });
     });
 
