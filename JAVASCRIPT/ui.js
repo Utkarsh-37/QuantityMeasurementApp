@@ -48,31 +48,17 @@ function showResult(value, unitSymbol) {
     const valueEl = document.querySelector("#result-value");
     const unitEl = document.querySelector("#result-unit");
 
-    // ❌ Safety check
-    if (!valueEl || !unitEl) {
-        console.warn("Result elements not found");
-        return;
-    }
+    if (!valueEl || !unitEl) return;
 
-    // 🔹 Handle null/empty
+    // ❗ If no value → hide panel
     if (value === null || value === undefined) {
         valueEl.textContent = "—";
         unitEl.textContent = "";
         return;
     }
 
-    // 🔹 Set value and unit
     valueEl.textContent = value;
     unitEl.textContent = unitSymbol || "";
-
-    // 🔹 Highlight animation
-    valueEl.classList.add("highlight");
-    unitEl.classList.add("highlight");
-
-    setTimeout(() => {
-        valueEl.classList.remove("highlight");
-        unitEl.classList.remove("highlight");
-    }, 1500);
 }
 
 function toggleOperators(show) {
@@ -111,10 +97,9 @@ function renderHistory(records) {
 
     // 🔹 Render records
     records.forEach(r => {
-        const li = document.createElement("li");
-
-        li.textContent = `${r.expression} = ${r.result} (${new Date(r.timestamp).toLocaleString()})`;
-
-        list.appendChild(li);
+    if (!r.expression || r.result === undefined) return; // skip bad records
+    const li = document.createElement("li");
+    li.textContent = `${r.expression} = ${r.result} (${new Date(r.timestamp).toLocaleString()})`;
+    list.appendChild(li);
     });
 }

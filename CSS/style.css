@@ -92,6 +92,6 @@ margin:0;
 }
 
 @keyframes glow {
-    0% { background-color: #ffffcc; }
-    100% { background-color: transparent; }
+    0%   { background-color: #ffffcc; }
+    100% { background-color: white; }  /* not transparent */
 }

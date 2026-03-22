@@ -1,16 +1,21 @@
 <!-- 
-    UC-JS-15 : Handle Type Card Click	
-    1. querySelectorAll(".type-card").forEach(card => card.addEventListener("click", async () => {
-    2. state.type = card.dataset.type
-    3. setActive(typeSelector, card, ".type-card")
-    4. fromInput.value = ""; toInput.value = ""; showResult(0, "")
-    5. const units = await getUnits(state.type)
-    6. populateDropdown(fromSelect, units)
-    7. populateDropdown(toSelect, units)
-    8. state.fromUnit = ""; state.toUnit = "" }))
+    UC-JS-17 : Execute Calculation	
+    1. async function calculate() { try {
+    2. if (state.action === "Conversion") {
+           const conv = await getConversion(state.fromUnit, state.toUnit)
+           const res = applyConversion(state.fromVal, conv)
+           showResult(res, state.toUnit) }
+    3. else if (state.action === "Comparison") {
+           // convert both to base, call compareValues(), showResult(sentence, "") }
+    4. else { // Arithmetic
+           // normalise toVal to fromUnit, call performArithmetic(), showResult() }
+    5. const record = { type:state.type, action:state.action, expression:..., result:..., timestamp: new Date().toISOString() }
+    6. await saveHistory(record)
+    7. renderHistory(await getHistory())
+    } catch(e) { showResult("Error: " + e.message, "") } }
 
     @author Developer
-    @version 15.0
+    @version 17.0
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -79,22 +84,22 @@
             <!-- Choose Action -->
             <p class="section-title mt-3">CHOOSE ACTION</p>
 
-            <div class="row g-3">
+            <div class="row g-3" id="action-row">
 
                 <div class="col-md-4">
-                    <button class="btn action-btn active w-100" data-action="Comparison">
+                    <button type="button" class="btn action-btn active w-100" data-action="Comparison">
                         Comparison
                     </button>
                 </div>
 
                 <div class="col-md-4">
-                    <button class="btn action-btn w-100" data-action="Conversion">
+                    <button type="button" class="btn action-btn w-100" data-action="Conversion">
                         Conversion
                     </button>
                 </div>
 
                 <div class="col-md-4">
-                    <button class="btn action-btn w-100" data-action="Arithmetic">
+                    <button type="button" class="btn action-btn w-100" data-action="Arithmetic">
                         Arithmetic
                     </button>
                 </div>
@@ -103,23 +108,18 @@
 
             <!-- OPERATOR SELECTOR -->
             <div id="operator-selector" class="row g-3 mt-3" style="display: none;">
-                
                 <div class="col-md-3">
-                    <button class="btn action-btn w-100">+</button>
+                    <button type="button" class="btn action-btn w-100">+</button>
                 </div>
-
                 <div class="col-md-3">
-                    <button class="btn action-btn w-100">-</button>
+                    <button type="button" class="btn action-btn w-100">-</button>
                 </div>
-
                 <div class="col-md-3">
-                    <button class="btn action-btn w-100">*</button>
+                    <button type="button" class="btn action-btn w-100">*</button>
                 </div>
-
                 <div class="col-md-3">
-                    <button class="btn action-btn w-100">/</button>
+                    <button type="button" class="btn action-btn w-100">/</button>
                 </div>
-
             </div>
 
             <!-- Input -->
@@ -154,16 +154,6 @@
                 </div>
 
             </div>
-            <!-- RESULT PANEL -->
-            <div class="row mt-3">
-                <div class="col-12">
-                    <div class="input-box text-center">
-                        <h3 id="result-value">—</h3>
-                        <p id="result-unit"></p>
-                    </div>
-                </div>
-            </div>
-
             <!-- HISTORY PANEL -->
             <div class="row mt-3">
                 <div class="col-12">

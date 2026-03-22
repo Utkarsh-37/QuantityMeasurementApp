@@ -17,6 +17,7 @@ async function getUnits(type) {
     }
 }
 
+
 async function getConversion(from, to) {
     try {
         const res = await fetch(
@@ -41,6 +42,7 @@ async function getConversion(from, to) {
     }
 }
 
+
 async function saveHistory(record) {
     try {
         const res = await fetch(`${BASE_URL}/history`, {
@@ -64,21 +66,23 @@ async function saveHistory(record) {
     }
 }
 
+// In api.js
 async function getHistory() {
     try {
-        const res = await fetch(
-            `${BASE_URL}/history?_sort=timestamp&_order=desc`
-        );
-
+        // Try the simplest URL first to see if ANY data comes back
+        const res = await fetch(`${BASE_URL}/history`);
+        
         if (!res.ok) {
             throw new Error(`HTTP ${res.status}`);
         }
 
         const data = await res.json();
-        return data;
+        
+        // Manual sort if the server query fails to do it
+        return data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     } catch (error) {
         console.error("Error fetching history:", error);
-        return []; // safe fallback
+        return [];
     }
 }
